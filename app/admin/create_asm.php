@@ -20,11 +20,7 @@ if(isset($_POST['submit']))
     $or_pass = mysqli_real_escape_string($con, $_POST['password']);
     $conf_password = mysqli_real_escape_string($con, $_POST['conf_password']);
     $postion = mysqli_real_escape_string($con, $_POST['postion']);
-    $subadmin_id = mysqli_real_escape_string($con, $_POST['subadmin_id']);
-
-    $getSubAdmin = "SELECT * FROM users WHERE id = '".$subadmin_id."' ";
-    $runGetSubAdmin = mysqli_query($con, $getSubAdmin);
-    $rowGetSubAdmin = mysqli_fetch_array($runGetSubAdmin);
+    $subadmin_id = "1";
 
     function get_client_ip()
     {
@@ -122,9 +118,9 @@ if(isset($_POST['submit']))
         $code1 = substr(number_format(time() * rand(),0,'',''),0,5);
         $code2 = strtoupper($code1);
 
-        $query = "INSERT INTO users(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, under_team_leader, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."', '".$subadmin_id."', '".$rowGetSubAdmin['under_sub_admin_id']."','1','".$member_since."','default.png', '".$place."')";
+        $query = "INSERT INTO users(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."', '".$subadmin_id."','1','".$member_since."','default.png', '".$place."')";
 
-        $queryOrg = "INSERT INTO usersOrg(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, under_team_leader,active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."', '".$subadmin_id."', '".$rowGetSubAdmin['under_sub_admin_id']."','1','".$member_since."','default.png','".$place."')";
+        $queryOrg = "INSERT INTO usersOrg(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."', '".$subadmin_id."','1','".$member_since."','default.png','".$place."')";
         //mysqli_query($con, $queryOrg);
 
         if(mysqli_query($con, $query) && mysqli_query($con, $queryOrg))
@@ -133,7 +129,7 @@ if(isset($_POST['submit']))
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                         </button>
-                        <strong>New Sales Person Added.</strong>
+                        <strong>New Area Sales Manager Added.</strong>
                     </div>";
         }
         else
@@ -142,7 +138,7 @@ if(isset($_POST['submit']))
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                         </button>
-                        <strong>Error... New Sales Person Not Added.</strong>
+                        <strong>Error... New Area Sales Manager Not Added.</strong>
                     </div>";
         }
     }
@@ -245,13 +241,13 @@ if(isset($_POST['submit']))
 
                                             <li class="breadcrumb-item"><a href="index.php">Super Admin</a></li>
 
-                                            <li class="breadcrumb-item active">Add New Sales Person</li>
+                                            <li class="breadcrumb-item active">Add New Area Sales Manager</li>
 
                                         </ol>
 
                                     </div>
 
-                                    <h4 class="page-title">Add New Sales Person</h4></div>
+                                    <h4 class="page-title">Add New Area Sales Manager</h4></div>
 
                             </div>
 
@@ -335,24 +331,7 @@ if(isset($_POST['submit']))
                                             <label>Assign Position</label>
                                             <select name="postion" class="form-control" required>
                                                 <option value="">Select one positon</option>
-                                                <option value="2">Sales Person</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label>Assign Team Leader</label>
-                                            <select name="subadmin_id" class="form-control" required>
-                                                <option value="">Select Team Leader</option>
-                                                <?php
-                                                    $sql1 = "SELECT * FROM users WHERE position = 3 ";
-                                                    $query1 = mysqli_query($con,$sql1);
-                                                    $x=1;
-                                                    while($row1 = mysqli_fetch_assoc($query1))
-                                                    {
-                                                ?>
-                                                <option value="<?php echo $row1['id']; ?>"><?php echo $row1['name']; ?></option>
-
-                                                <?php } ?>
+                                                <option value="5">Area Sales Manager</option>
                                             </select>
                                         </div>
 

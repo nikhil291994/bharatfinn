@@ -3,11 +3,6 @@ session_start();
 error_reporting(0);
 include('../class/config.php');
 
-if (!isset($_SESSION['email'])) 
-{
-    header('location: ../index.php');
-}
-
 $selectId1 = "SELECT * FROM users WHERE email = '".$_SESSION['email']."' ";
 $rowId1 = mysqli_query($con, $selectId1);
 $row1Id1 = mysqli_fetch_array($rowId1);
@@ -23,13 +18,14 @@ $row1Id1 = mysqli_fetch_array($rowId1);
                 </div>
             </div>
             <div class="sidebar-user">
+
                 <h6 class=""><?php echo $row1Id1['name'];?><br>(ID : <?php echo $row1Id1['login_id'];?>)</h6>
-                <p class="online-icon text-dark">(Super Admin)</p>
-                <!-- <ul class="list-unstyled list-inline mb-0 mt-2">
+                <p class="online-icon text-dark">(Area Sales Manager)</p>
+                <ul class="list-unstyled list-inline mb-0 mt-2">
                     <li class="list-inline-item"><a href="profile.php" data-toggle="tooltip" data-placement="top" title="Profile"><i class="dripicons-user text-blue"></i></a></li>
                     <li class="list-inline-item"><a href="#logoutadmin" data-toggle="modal" data-placement="top" title="Log out">
                         <i class="dripicons-power text-danger"></i></a></li>
-                </ul>` -->
+                </ul>
             </div>
             <div class="sidebar-inner slimscrollleft">
                 <div id="sidebar-menu">
@@ -39,7 +35,7 @@ $row1Id1 = mysqli_fetch_array($rowId1);
                                 <i class="dripicons-to-do"></i>                                
                                 <span> Dashboard</span>
                                 <?php
-                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads";
+                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."'";
                                     $rownewLead = mysqli_query($con, $newLead);
                                     $runrownewLead = mysqli_fetch_array($rownewLead);
                                 ?>
@@ -49,68 +45,43 @@ $row1Id1 = mysqli_fetch_array($rowId1);
 
                         <li <?php if($_SERVER['SCRIPT_NAME']=="/telecaller_leads.php") {?> class="active" <?php } ?>>
                             <a href="telecaller_leads.php" class="waves-effect">
-                                <i class="fas fa-file-alt"></i>
+                                <i class="dripicons-to-do"></i>
                                     <span> Sales Person Leads</span>
                             </a>
                         </li>
-                        
-                        <li <?php if($_SERVER['SCRIPT_NAME']=="/create_users.php") {?> class="active" <?php } ?>>
-                            <a href="create_users.php" class="waves-effect">
-                                <i class="dripicons-to-do"></i>
-                                    <span> Create Sales Person</span>
-                            </a>
-                        </li>
 
-                        <li <?php if($_SERVER['SCRIPT_NAME']=="/create_sub_admin.php") {?> class="active" <?php } ?>>
-                            <a href="create_sub_admin.php" class="waves-effect">
-                                <i class="dripicons-to-do"></i>
-                                    <span> Create Team Leader</span>
-                            </a>
-                        </li>
-
-                        <li <?php if($_SERVER['SCRIPT_NAME']=="/create_asm.php") {?> class="active" <?php } ?>>
-                            <a href="create_asm.php" class="waves-effect">
-                                <i class="dripicons-to-do"></i>
-                                    <span> Create ASM</span>
-                            </a>
-                        </li>
-
-                        <li <?php if($_SERVER['SCRIPT_NAME']=="/transfer_leads.php") {?> class="active" <?php } ?>>
-                            <a href="transfer_leads.php" class="waves-effect">
-                                <i class="dripicons-to-do"></i>
-                                    <span> Transfer Leads</span>
-                            </a>
-                        </li>
                         
                         <li <?php if($_SERVER['SCRIPT_NAME']=="/view_users.php") {?> class="active" <?php } ?>>
                             <a href="view_users.php" class="waves-effect">
-                                <i class="fas fa-user"></i>
+                                <i class="dripicons-to-do"></i>
                                     <span> View Users</span>
                             </a>
                         </li>
+
                         <li <?php if($_SERVER['SCRIPT_NAME']=="/addleads.php") {?> class="active" <?php } ?>>
-                            <a href="addleads.php" class="waves-effect"><i class="fas fa-edit"></i>
+                            <a href="addleads.php" class="waves-effect">
+                                <i class="fas fa-edit"></i>
                             <span> Add New Leads</span></a>
                         </li>
+
                         <li <?php if($_SERVER['SCRIPT_NAME']=="/dead_leads.php") {?> class="active" <?php } ?>>
                             <a href="dead_leads.php" class="waves-effect">
                                 <i class="dripicons-to-do"></i>
                                     <span> <!-- Dead -->Rejected Leads</span>
                                     <?php
-                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE status=3";
+                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE ( assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."') AND status=3";
                                     $rownewLead = mysqli_query($con, $newLead);
                                     $runrownewLead = mysqli_fetch_array($rownewLead);
                                 ?>
                                 <span class="badge badge-pill badge-info float-right"><?php echo $runrownewLead['today'];?></span>
                             </a>
                         </li>
-
                         <li <?php if($_SERVER['SCRIPT_NAME']=="/Booking_done.php") {?> class="active" <?php } ?>>
                             <a href="Booking_done.php" class="waves-effect">
                                 <i class="dripicons-to-do"></i>
                                     <span> Approved Lead</span>
                                     <?php
-                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE status=8";
+                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE ( assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."') AND status=8";
                                     $rownewLead = mysqli_query($con, $newLead);
                                     $runrownewLead = mysqli_fetch_array($rownewLead);
                                 ?>
@@ -119,6 +90,7 @@ $row1Id1 = mysqli_fetch_array($rowId1);
                         </li>
                         <li><a href="#logoutadmin" data-toggle="modal"><i class="mdi mdi-logout"></i>Logout</a>
                         </li>
+
                     </ul>
                 </div>
 

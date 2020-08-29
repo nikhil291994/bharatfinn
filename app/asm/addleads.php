@@ -46,21 +46,21 @@ if(isset($_POST['submitData']))
             $msg = "<div class='alert bg-gradient1 text-white' role='alert'><strong>Error !</strong> Client Email ID already exist.</div>";
         }
         else */
-		if ($phonedata[0] > 1) {
+        if ($phonedata[0] > 1) {
             $msg = "<div class='alert bg-gradient1 text-white' role='alert'><strong>Error !</strong> Client Contact No already exist.</div>";
         }
         else
         {
-            $query = mysqli_query($con,"INSERT INTO leads(name, mobile, email, enquiry, id_proof, pan_no, addhar_no, loan_amount, income_source, status, login_status,  submit_date, submit_time, assign_tele_id, assign_tele_id_Org, assign_subadmin_id, assign_subadmin_id_Org, under_team_leader_id_Org, under_team_leader_id) VALUES ('".$name."','".$phone."','".$email."', '".$project."','".$id_proof."','".$pan_no."','".$addhar_no."','".$loan_amount."','".$income_source."', '1' , '1' ,'".$submit_date."','".$submit_time."','".$row1Id['id']."','".$row1Id['id']."','".$row1Id['under_sub_admin_id']."','".$row1Id['under_sub_admin_id']."','".$row1Id['under_team_leader']."','".$row1Id['under_team_leader']."')") OR die(mysqli_error());
+            $query = mysqli_query($con,"INSERT INTO leads(name, mobile, email, enquiry, id_proof, pan_no, addhar_no, loan_amount, income_source, status, login_status,  submit_date, submit_time, assign_tele_id, assign_tele_id_Org, assign_subadmin_id ,assign_subadmin_id_Org) VALUES ('".$name."','".$phone."','".$email."', '".$project."','".$id_proof."','".$pan_no."','".$addhar_no."','".$loan_amount."','".$income_source."', '1' , '1' ,'".$submit_date."','".$submit_time."','".$row1Id['id']."','".$row1Id['id']."','".$row1Id['under_sub_admin_id']."','".$row1Id['under_sub_admin_id']."')") OR die(mysqli_error());
         
-			if($query>0)
-			{
-				$msg = "<div class='alert bg-gradient2 text-white' role='alert'><strong>Well done!</strong> New Lead Added.</div>";
-				
-			}
-			else{
-				$msg = "<div class='alert bg-gradient1 text-white' role='alert'><strong>Error!</strong> New Lead Not Added.</div>";
-			}
+            if($query>0)
+            {
+                $msg = "<div class='alert bg-gradient2 text-white' role='alert'><strong>Well done!</strong> New Lead Added.</div>";
+                
+            }
+            else{
+                $msg = "<div class='alert bg-gradient1 text-white' role='alert'><strong>Error!</strong> New Lead Not Added.</div>";
+            }
         }      
 
         
@@ -107,45 +107,45 @@ elseif(isset($_POST['upload']))
             }
 
             $allDataInSheet = $objPHPExcel-> getActiveSheet()-> toArray(null, true, true, true);
-			$arrayCount = count($allDataInSheet); // Here get total count of row in that Excel sheet
-						
-			if(strtolower($allDataInSheet[1]['A']) =='name' && strtolower($allDataInSheet[1]['B']) =='mobile no.' && strtolower($allDataInSheet[1]['C']) =='email id' && strtolower($allDataInSheet[1]['D']) =='project/location')
-			{
-				$inserted_rows = 0;
-			
-				for ($i = 2; $i <= $arrayCount; $i++) {
-					$name = trim($allDataInSheet[$i]["A"]);
-					$mobile = trim($allDataInSheet[$i]["B"]);
-					$email = trim($allDataInSheet[$i]["C"]);
-					$enquiry = trim($allDataInSheet[$i]["D"]);
-					$submit_date = date("d/m/Y");
-					$submit_time =  date("H:i a");
-					
-					if(function_exists('date_default_timezone_set')) {
-						date_default_timezone_set("Asia/Kolkata");
-					}
-					
-					if(!empty($name) && !empty($mobile)){
-						$query = mysqli_query($con, "INSERT INTO leads(name, mobile, email, enquiry, status, submit_date, submit_time, assign_tele_id) VALUES ('".$name."','".$mobile."','".$email."', '".$enquiry."', '1' ,'".$submit_date."','".$submit_time."','".$row1Id['id']."')") OR die(mysqli_error()) OR die(mysqli_error());
-						if($query>0)
-						{
-							$inserted_rows++;
-							/* $msgFile = "<div class='alert bg-gradient2 text-white' role='alert'><strong>Well done!</strong> Excel file uploded successfully.</div>"; */
-							
-						}
-					}
-					
-				}
-				
-				if($inserted_rows > 0){
-					$msgFile = "<div class='alert bg-gradient2 text-white alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button> <strong>Well done!</strong> Excel file with ".$inserted_rows." rows uploded successfully.</div>";
-				}else{
-					$msgFile = "<div class='alert bg-gradient1 text-white alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button> <strong>Error !</strong> Excel file not uploded.</div>";
-				}
-				
-			}else{
-				$msgFile = "<div class='alert bg-gradient1 text-white alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button> <strong>Template Error !</strong> Kindly use Excel template same as provided.</div>";
-			}
+            $arrayCount = count($allDataInSheet); // Here get total count of row in that Excel sheet
+                        
+            if(strtolower($allDataInSheet[1]['A']) =='name' && strtolower($allDataInSheet[1]['B']) =='mobile no.' && strtolower($allDataInSheet[1]['C']) =='email id' && strtolower($allDataInSheet[1]['D']) =='project/location')
+            {
+                $inserted_rows = 0;
+            
+                for ($i = 2; $i <= $arrayCount; $i++) {
+                    $name = trim($allDataInSheet[$i]["A"]);
+                    $mobile = trim($allDataInSheet[$i]["B"]);
+                    $email = trim($allDataInSheet[$i]["C"]);
+                    $enquiry = trim($allDataInSheet[$i]["D"]);
+                    $submit_date = date("d/m/Y");
+                    $submit_time =  date("H:i a");
+                    
+                    if(function_exists('date_default_timezone_set')) {
+                        date_default_timezone_set("Asia/Kolkata");
+                    }
+                    
+                    if(!empty($name) && !empty($mobile)){
+                        $query = mysqli_query($con, "INSERT INTO leads(name, mobile, email, enquiry, status, submit_date, submit_time, assign_tele_id) VALUES ('".$name."','".$mobile."','".$email."', '".$enquiry."', '1' ,'".$submit_date."','".$submit_time."','".$row1Id['id']."')") OR die(mysqli_error()) OR die(mysqli_error());
+                        if($query>0)
+                        {
+                            $inserted_rows++;
+                            /* $msgFile = "<div class='alert bg-gradient2 text-white' role='alert'><strong>Well done!</strong> Excel file uploded successfully.</div>"; */
+                            
+                        }
+                    }
+                    
+                }
+                
+                if($inserted_rows > 0){
+                    $msgFile = "<div class='alert bg-gradient2 text-white alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button> <strong>Well done!</strong> Excel file with ".$inserted_rows." rows uploded successfully.</div>";
+                }else{
+                    $msgFile = "<div class='alert bg-gradient1 text-white alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button> <strong>Error !</strong> Excel file not uploded.</div>";
+                }
+                
+            }else{
+                $msgFile = "<div class='alert bg-gradient1 text-white alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button> <strong>Template Error !</strong> Kindly use Excel template same as provided.</div>";
+            }
         }
     }
 
@@ -185,13 +185,12 @@ $count_done = $row_done_leads['status'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<!-- index.html  11:55:53 GMT -->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
-    <title>Sales-Person | Add Leads | Bharat Finn</title>
+    <title>Team Leader | Add Leads | Bharat Finn</title>
     <meta content="Admin Dashboard" name="description">
     <meta content="Mannatthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -216,11 +215,6 @@ $count_done = $row_done_leads['status'];
 
 <body class="fixed-left">
     <!-- Loader -->
-    <!-- <div id="preloader">
-        <div id="status">
-            <div class="spinner"></div>
-        </div>
-    </div> -->
     <!-- Begin page -->
     <div id="wrapper">
         <!-- ========== Left Sidebar Start ========== -->
@@ -240,7 +234,7 @@ $count_done = $row_done_leads['status'];
                                 <div class="page-title-box">
                                     <div class="btn-group float-right">
                                         <ol class="breadcrumb hide-phone p-0 m-0">
-                                            <li class="breadcrumb-item"><a href="index.php">Sales-Person</a></li>
+                                            <li class="breadcrumb-item"><a href="index.php">Team Leader</a></li>
                                             <li class="breadcrumb-item active">Add New Leads</li>
                                         </ol>
                                     </div>

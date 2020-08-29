@@ -19,6 +19,7 @@ if(isset($_POST['submit']))
     $or_pass = mysqli_real_escape_string($con, $_POST['password']);
     $conf_password = mysqli_real_escape_string($con, $_POST['conf_password']);
     $postion = mysqli_real_escape_string($con, $_POST['postion']);
+    $subadmin_id = mysqli_real_escape_string($con, $_POST['subadmin_id']);
 
     function get_client_ip()
     {
@@ -118,9 +119,9 @@ if(isset($_POST['submit']))
         $code1 = substr(number_format(time() * rand(),0,'',''),0,5);
         $code2 = strtoupper($code1);
 
-        $query = "INSERT INTO users(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."', '1','1','".$member_since."','default.png', '".$place."')";
+        $query = "INSERT INTO users(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."','".$subadmin_id."','1','".$member_since."','default.png', '".$place."')";
 
-        $queryOrg = "INSERT INTO usersOrg(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."', '1','1','".$member_since."','default.png','".$place."')";
+        $queryOrg = "INSERT INTO usersOrg(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."','".$subadmin_id."','1','".$member_since."','default.png','".$place."')";
 
         if(mysqli_query($con, $query) && mysqli_query($con, $queryOrg))
         {
@@ -271,6 +272,24 @@ if(isset($_POST['submit']))
                                                 <select name="postion" class="form-control" required>
                                                     <option value="">Select one positon</option>
                                                     <option value="3">Team Leader</option>
+                                                </select>
+                                            </div>
+
+
+                                            <div>
+                                                <label>Assign Area Sales Manager</label>
+                                                <select name="subadmin_id" class="form-control" required>
+                                                    <option value="">Select ASM</option>
+                                                    <?php
+                                                        $sql1 = "SELECT * FROM users WHERE position = 5 ";
+                                                        $query1 = mysqli_query($con,$sql1);
+                                                        $x=1;
+                                                        while($row1 = mysqli_fetch_assoc($query1))
+                                                        {
+                                                    ?>
+                                                    <option value="<?php echo $row1['id']; ?>"><?php echo $row1['name']; ?></option>
+
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group pass_show">

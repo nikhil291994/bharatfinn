@@ -52,6 +52,16 @@ if(isset($_POST['submit']))
         echo "<script>window.location.href='user/index.php';</script>";
         exit;
     }
+    elseif ($_SESSION['position'] == 5) 
+    {
+        $_SESSION['username'] = $show['username'];
+        $_SESSION['email'] = $show['email'];
+        $_SESSION['subadmin_id'] = $show['id'];
+        
+        //header('location: subadmin/index.php');
+        echo "<script>window.location.href='asm/index.php';</script>";
+        exit;
+    }
 
   }
   else {
