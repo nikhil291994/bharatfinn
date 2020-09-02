@@ -43,9 +43,27 @@ $row1Id1 = mysqli_fetch_array($rowId1);
                 </a>
                 </li>
 
+                <li <?php if($_SERVER['SCRIPT_NAME']=="/viewShops.php") {?> class="active" <?php } ?>>
+                    <a href="viewShops.php" class="waves-effect"><i class="dripicons-device-desktop"></i>
+                    <span> View Shop List</span>
+
+                    <?php
+                        $newShop = "SELECT COUNT(*) AS 'countAll' FROM shopdetails WHERE assign_tele_id = '".$row1Id1['id']."' ORDER BY shop_id DESC";
+                        $rownewShop = mysqli_query($con, $newShop);
+                        $runrownewShop = mysqli_fetch_array($rownewShop);
+                    ?>
+                    <span class="badge badge-pill badge-info float-right"><?php echo $runrownewShop['countAll'];?></span>
+                </a>
+                </li>
+
                 <li <?php if($_SERVER['SCRIPT_NAME']=="/addleads.php") {?> class="active" <?php } ?>>
                     <a href="addleads.php" class="waves-effect"><i class="dripicons-to-do"></i>
                     <span> Add New Leads</span></a>
+                </li>
+
+                <li <?php if($_SERVER['SCRIPT_NAME']=="/addshop.php") {?> class="active" <?php } ?>>
+                    <a href="addshop.php" class="waves-effect"><i class="dripicons-to-do"></i>
+                    <span> Add New Shop</span></a>
                 </li>
 
                 <li>

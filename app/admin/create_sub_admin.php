@@ -121,7 +121,7 @@ if(isset($_POST['submit']))
 
         $query = "INSERT INTO users(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."','".$subadmin_id."','1','".$member_since."','default.png', '".$place."')";
 
-        $queryOrg = "INSERT INTO usersOrg(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."','".$subadmin_id."','1','".$member_since."','default.png','".$place."')";
+        $queryOrg = "INSERT INTO usersOrg(login_id, name, contact, email, username, password, or_pass, id_proof_type, id_proof_number, position, under_sub_admin_id, active_status, member_since, imgPath, location) VALUES ('".$code2."','".$name."','".$contact."','".$email."', '".$username."','".$password."','".$or_pass."','".$id_proof_type."','".$id_proof_number."','".$postion."','".$subadmin_id."','1','".$member_since."','default.png','".$place."')";    
 
         if(mysqli_query($con, $query) && mysqli_query($con, $queryOrg))
         {

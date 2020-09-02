@@ -35,7 +35,7 @@ $row1Id1 = mysqli_fetch_array($rowId1);
                                 <i class="dripicons-to-do"></i>                                
                                 <span> Dashboard</span>
                                 <?php
-                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."'";
+                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."' OR under_team_leader_id = '".$_SESSION['subadmin_id']."'";
                                     $rownewLead = mysqli_query($con, $newLead);
                                     $runrownewLead = mysqli_fetch_array($rownewLead);
                                 ?>
@@ -69,7 +69,7 @@ $row1Id1 = mysqli_fetch_array($rowId1);
                                 <i class="dripicons-to-do"></i>
                                     <span> <!-- Dead -->Rejected Leads</span>
                                     <?php
-                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE ( assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."') AND status=3";
+                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE ( assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."' OR under_team_leader_id = '".$_SESSION['subadmin_id']."') AND status = 3";
                                     $rownewLead = mysqli_query($con, $newLead);
                                     $runrownewLead = mysqli_fetch_array($rownewLead);
                                 ?>
@@ -81,7 +81,7 @@ $row1Id1 = mysqli_fetch_array($rowId1);
                                 <i class="dripicons-to-do"></i>
                                     <span> Approved Lead</span>
                                     <?php
-                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE ( assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."') AND status=8";
+                                    $newLead = "SELECT COUNT(*) AS 'today' FROM leads WHERE ( assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."' OR under_team_leader_id = '".$_SESSION['subadmin_id']."') AND status=8";
                                     $rownewLead = mysqli_query($con, $newLead);
                                     $runrownewLead = mysqli_fetch_array($rownewLead);
                                 ?>

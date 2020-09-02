@@ -36,7 +36,7 @@ mysqli_query($con, $update1);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
-    <title>Team Leader | Approved Leads | Bharat Finn</title>
+    <title>ASM | Approved Leads | Bharat Finn</title>
     <meta content="Admin Dashboard" name="description">
     <meta content="Mannatthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -115,7 +115,7 @@ mysqli_query($con, $update1);
                                                     <tbody>
                                                         <?php
                                                             $x = 1;
-                                                            $fetch = "SELECT * FROM leads WHERE ( assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."') AND status IN ('8')  ORDER BY id DESC";
+                                                            $fetch = "SELECT * FROM leads WHERE ( assign_subadmin_id = '".$_SESSION['subadmin_id']."'  OR assign_tele_id = '".$_SESSION['subadmin_id']."' OR under_team_leader_id = '".$_SESSION['subadmin_id']."') AND status IN ('8')  ORDER BY id DESC";
                                                             $row = mysqli_query($con, $fetch);
                                                             while ($run = mysqli_fetch_array($row)) 
                                                             {

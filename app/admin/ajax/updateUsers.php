@@ -39,6 +39,7 @@ $run2 = mysqli_fetch_array($result2);
       <div class="col-md-9" style="padding-top: 14px;">
          <select class="form-control" name="position" onchange="Check(this);" required>
           <option value="">Select Position</option>
+          <option value="5" <?php if($run2['position']=="5") echo 'selected="selected"'; ?> >Area Sales Manager</option>
           <option value="3" <?php if($run2['position']=="3") echo 'selected="selected"'; ?> >Team Leader</option>
           <option value="2" <?php if($run2['position']=="2") echo 'selected="selected"'; ?> >Sales Person</option>
           <option value="4" <?php if($run2['position']=="4") echo 'selected="selected"'; ?> >User</option>
