@@ -155,8 +155,7 @@ header('location: view_users.php?position_id='.$_GET['position_id'].' ');
                         <td>
                             <select name="position_id" class="form-control" required>
                                 <option value="">Select any one</option>                           
-                                <!-- <option value="2">Telecaller</option> 
-                                    <option value="3">Sales Person</option> -->
+                                <!-- <option value="3">Team Leader</option> -->
                                 <option value="2">Sales Person</option>
                             </select>
                         </td>

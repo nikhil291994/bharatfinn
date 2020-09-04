@@ -152,11 +152,12 @@ $count_done = $row_approved_leads['status'];
                                                             <!-- <th class="all">Shop Address</th> -->
                                                             <th>Phone</th>
                                                             <th>Email</th>
-                                                            <th>PAN No.</th>
-                                                            <th>Adhaar No.</th>
+                                                            <!-- <th>PAN No.</th> -->
+                                                            <!-- <th>Adhaar No.</th> -->
                                                             <th>Firm Type</th>
                                                             <th class="all">Status</th>
                                                             <th class="all">Created Date</th>
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -176,8 +177,8 @@ $count_done = $row_approved_leads['status'];
                                                             <!-- <td><?php echo stripcslashes($run['shopaddress']); ?></td> -->
                                                             <td><?php echo $run['phone']; ?></td>
                                                             <td><?php echo $run['email']; ?></td>
-                                                            <td><?php echo $run['pan_no']; ?></td>
-                                                            <td><?php echo $run['addhar_no']; ?></td>
+                                                            <!-- <td><?php echo $run['pan_no']; ?></td>
+                                                            <td><?php echo $run['addhar_no']; ?></td> -->
                                                             <td>
                                                                 <?php 
                                                                     if($run['firm_type']==1)
@@ -207,6 +208,9 @@ $count_done = $row_approved_leads['status'];
                                                                 ?>
                                                             </td>
                                                             <td><?php echo $run['submit_date'].'-'.$run['submit_time']; ?></td>
+                                                            <td>
+                                                                <button type="button" id="<?php echo $run["shop_id"]; ?>" class="btn btn-primary waves-effect waves-light viewData" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-center" style='line-height: 16px;font-size: 12px;'><i class="fas fa-store"></i> View</button>
+                                                            </td>
                                                         </tr>
                                                         <?php  }
                                                         ?>
@@ -220,11 +224,12 @@ $count_done = $row_approved_leads['status'];
                                                             <!-- <th>Shop Address</th> -->
                                                             <th>Phone</th>
                                                             <th>Email</th>
-                                                            <th>PAN No.</th>
-                                                            <th>Adhaar No.</th>
+                                                            <!-- <th>PAN No.</th>
+                                                            <th>Adhaar No.</th> -->
                                                             <th>Firm Type</th>
                                                             <th>Status</th>
                                                             <th>Created Date</th>
+                                                            <th>Action</th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
@@ -246,6 +251,24 @@ $count_done = $row_approved_leads['status'];
         </div>
         <!-- End Right content here -->
     </div>
+
+    <div class="modal fade bs-example-modal-center" id="PrimaryModalalert" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">View Shop Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="change_detail">
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
     <!-- END wrapper -->
     <!-- jQuery  -->
     <script src="../assets/js/jquery.min.js"></script>
@@ -375,11 +398,11 @@ $(document).ready(function()
     } );
 });
 
-$('table').on('click', '.change_data', function(){
+$('table').on('click', '.viewData', function(){
       var id = $(this).attr("id");
-      //alert(id);
+      
       $.ajax({
-           url:"ajax/updateView.php",
+           url:"ajax/viewShopDetails.php",
            method:"post",
            data:{id:id},
            success:function(data){

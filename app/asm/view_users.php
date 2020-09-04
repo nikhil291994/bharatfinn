@@ -158,6 +158,7 @@ header('location: view_users.php?position_id='.$_GET['position_id'].' ');
                                 <!-- <option value="2">Telecaller</option> -->
                                 <!-- <option value="2">Sales Person</option> -->
                                 <option value="3">Team Leader</option>
+                                <option value="2">Sales Person</option>
                             </select>
                         </td>
                         <td>
@@ -175,10 +176,12 @@ header('location: view_users.php?position_id='.$_GET['position_id'].' ');
                                     <?php
                                         if ($run2['position'] == 3) 
                                         {
+                                            $field_name = 'under_sub_admin_id';
                                             echo 'Team Leader';
                                         }
                                         elseif ($run2['position'] == 2) 
                                         {
+                                            $field_name = 'under_team_leader';
                                             echo 'Sales Person';
                                         }  
                                     ?>                                 
@@ -227,7 +230,7 @@ header('location: view_users.php?position_id='.$_GET['position_id'].' ');
                                                     <tbody>
                                                         <?php
                                                             $x = 1;
-                                                            $fetch = "SELECT * FROM users WHERE position = '".$_GET['position_id']."' AND under_sub_admin_id = '".$_SESSION['subadmin_id']."' ORDER BY id DESC";
+                                                            $fetch = "SELECT * FROM users WHERE position = '".$_GET['position_id']."' AND ".$field_name." = '".$_SESSION['subadmin_id']."' ORDER BY id DESC";
                                                             $row = mysqli_query($con, $fetch);
                                                             while ($run = mysqli_fetch_array($row)) 
                                                             {

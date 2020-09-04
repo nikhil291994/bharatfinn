@@ -215,7 +215,7 @@ elseif (isset($_POST['setPass']))
         <!--
             # Site Developed By: Mr. Nikhil M. Dange
         -->
-        <footer class="footer">Copyright &copy; <script>document.write(new Date().getFullYear());</script>. Bharat Finn Services <br>(A Division of Olakh Traders). All Rights Reserved.</footer>
+        <footer class="footer">Copyright &copy; <script>document.write(new Date().getFullYear());</script>. Bharat Finn Services.</footer>
     </div>
 
     <!-- jQuery  -->

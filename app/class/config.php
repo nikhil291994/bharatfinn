@@ -1,8 +1,13 @@
 <?php
 error_reporting(0);
 
-define ( 'DB_USER', 'root');
+/*define ( 'DB_USER', 'root');
 define ( 'DB_PASSWORD', '');
+define ( 'DB_DB', 'bharau65_crm');
+define ( 'DB_HOST','localhost');*/
+
+define ( 'DB_USER', 'bharau65_crm');
+define ( 'DB_PASSWORD', 'akshay@1995');
 define ( 'DB_DB', 'bharau65_crm');
 define ( 'DB_HOST','localhost');
 

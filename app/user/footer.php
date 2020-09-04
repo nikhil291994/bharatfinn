@@ -12,4 +12,4 @@ function showSideMenu()
 <!--
     # Site Developed By: Mr. Nikhil M. Dange
 -->
-<footer class="footer">Copyright &copy; <script>document.write(new Date().getFullYear());</script>. Bharat Finn Services. All Rights Reserved.</footer>
+<footer class="footer">Copyright &copy; <script>document.write(new Date().getFullYear());</script>. Bharat Finn Services.</footer>

@@ -315,20 +315,22 @@ header('location: view_users.php?position_id='.$_GET['position_id'].' ');
                                                                         <div class='btn btn-bookingdone-info' style='color:#fff;width:100%; padding: 2px 5px;'>Active</div>
                                                                     </button>
                                                                     <button type="button" id="<?php echo $run["id"]; ?>" class="btn btn-primary waves-effect waves-light change_data" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-center" style='line-height: 16px;font-size: 12px;'><i class="fas fa-user-edit"></i> </button>
-                                                                    <div class="modal fade bs-example-modal-center" id="PrimaryModalalert" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
-                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                </div>
-                                                                                <div class="modal-body" id="change_detail">
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- /.modal-content -->
-                                                                        </div>
-                                                                        <!-- /.modal-dialog -->
-                                                                        </div>
+    <div class="modal fade bs-example-modal-center" id="PrimaryModalalert" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="change_detail">
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
                                                                 </form>
                                                         <?php } ?>
                                                     </td>

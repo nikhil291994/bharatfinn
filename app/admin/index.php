@@ -64,6 +64,16 @@ mysqli_query($con, $update);
 
 //header('location: index.php');
 }
+elseif(isset($_POST['changeShop'])) 
+{
+    $id = mysqli_real_escape_string($con, $_POST['id']);
+    $status = mysqli_real_escape_string($con, $_POST['status']);
+
+    $update1 = "UPDATE shopdetails SET status = '".$status."' WHERE shop_id = '".$id."' ";   
+    mysqli_query($con, $update1);
+
+    header('location: viewShops.php');
+}
 
 
 $id = $_GET['id'];
@@ -317,6 +327,10 @@ $count_done = $row_done_leads['status'];
 	                                                        {
 	                                                        	echo " (Client)";
 	                                                        }
+                                                            else if ($row1Id['position'] == '5')
+                                                            {
+                                                                echo " (ASM)";
+                                                            }
                                                         ?>
                                                     </td>
                                                 </tr>

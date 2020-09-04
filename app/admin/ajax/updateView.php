@@ -15,7 +15,8 @@ $run2 = mysqli_fetch_array($result2);
      <div class="row">
             <div class="col-md-3" style="padding-top: 7px;">
                 <b style="">Name :</b>
-            </div><div class="col-md-9" style="padding-top: 14px;">
+            </div>
+            <div class="col-md-9" style="padding-top: 14px;">
                 <input type="text" maxlength="20"  class="form-control letter" name="name"  value="<?php echo $run2['name']; ?>" readonly>
             </div>
 

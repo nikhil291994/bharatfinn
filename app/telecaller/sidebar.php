@@ -53,7 +53,7 @@ $row1Id1 = mysqli_fetch_array($rowId1);
                         $runrownewShop = mysqli_fetch_array($rownewShop);
                     ?>
                     <span class="badge badge-pill badge-info float-right"><?php echo $runrownewShop['countAll'];?></span>
-                </a>
+                    </a>
                 </li>
 
                 <li <?php if($_SERVER['SCRIPT_NAME']=="/addleads.php") {?> class="active" <?php } ?>>
